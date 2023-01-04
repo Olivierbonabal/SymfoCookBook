@@ -8,6 +8,7 @@ use App\Repository\IngredientRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -55,7 +56,7 @@ class RecipeType extends AbstractType
                     'max' => '1441',
                 ],
                 'required' => false,
-                'label' => '⏳ Temps (min)',
+                'label' => '⌚ Temps (min)',
                 'label_attr' => [
                     'class' => 'form-label mt-3'
                 ],
@@ -135,12 +136,19 @@ class RecipeType extends AbstractType
                     'class' => 'form-check-input',
                 ],
                 'required' => false,
-                'label' => '💚 Favoris',
+                'label' => '⭐ Favoris',
                 'label_attr' => [
                     'class' => 'form-check-label'
                 ],
                 'constraints' => [
                     new Assert\NotNull()
+                ]
+            ])
+
+            ->add('imageFile', VichImageType::class, [
+                'label' => '📷 Image de la recette',
+                'label_attr' => [
+                    'class' => 'form-label mt-3'
                 ]
             ])
 
@@ -152,7 +160,7 @@ class RecipeType extends AbstractType
                         ->setParameter('user', $this->token->getToken()->getUser())
                         ->orderBy('i.name', 'ASC');
                 },
-                'label' => 'Vos ingédients',
+                'label' => '👨‍🍳 Vos ingédients',
                 'label_attr' => [
                     'class' => 'form-label mt-3'
                 ],
