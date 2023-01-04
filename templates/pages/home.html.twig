@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymfoCuisine~Accueil
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<div class="jumbotron my-4">
+			<h1 class="display-4">Accueil Recettes de Cuisine</h1>
+			<p class="lead">App Recette de cuisine avec ajout d'ingrédients...</p>
+			<hr class="my-4">
+			<p>Rendez-vous sur la page d'inscription</p>
+			<p class="lead">
+				<a class="btn btn-primary btn-lg" href="#" role="button">Inscription</a>
+			</p>
+		</div>
+
+		<div class="recipes">
+			<h2 class="mt-3">Recettes en partage</h2>
+			<div class="d-flex justify-content-between">
+				{% for recipe in recipes %}
+
+					<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+						<div class="card-header">Recette n°{{ recipe.id }}</div>
+						<div class="card-body">
+							<h4 class="card-title">{{ recipe.name }}</h4>
+							<p class="card-text">{{ recipe.description|slice(0, 100) ~ '...' }}</p>
+						</div>
+					</div>
+
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

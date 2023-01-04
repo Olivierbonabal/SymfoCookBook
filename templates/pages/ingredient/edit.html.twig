@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Créer ton ingrédient
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+
+		<h1 class="my-3">
+			Modification d'un ingrédient
+		</h1>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-dismissible alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		{{ form_start(form) }}
+		<div class="form-error">
+			{{ form_errors(form) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.name) }}
+			{{ form_widget(form.name) }}
+			<div class="form-error">
+				{{ form_errors(form.name) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.price) }}
+			{{ form_widget(form.price) }}
+			<div class="form-error">
+				{{ form_errors(form.price) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{ form_row(form.submit)}}
+		</div>
+
+		{{ form_end(form) }}
+	</div>
+
+{% endblock %}

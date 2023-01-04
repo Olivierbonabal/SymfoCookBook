@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du Profil
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1 class="mt-4">Formulaire de modification du profil</h1>
+
+		{% for message in app.flashes('warning') %}
+			<div class="alert alert-dismissible alert-warning mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		{{ form(form) }}
+	</div>
+
+{% endblock %}

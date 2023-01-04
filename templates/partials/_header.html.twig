@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">CookBook</a>
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor02">
+
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('home.index') }}">Accueil
+						<span class="visually-hidden">(current)</span>
+					</a>
+				</li>
+
+				{% if app.user %}
+					<li class="nav-item">
+						<a class="nav-link active" href="{{ path('ingredient.index') }}">Mes Ingrédients
+							<span class="visually-hidden">(current)</span>
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link active" href="{{ path('recipe.index') }}">Mes Recettes
+							<span class="visually-hidden">(current)</span>
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+
+			<div class="d-flex">
+				<ul class="navbar-nav me-auto">
+
+					{% if app.user %}
+						<li class="nav-item dropdown" style="margin-right: 7rem;">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.fullname }}</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{{ path('user.edit', {id : app.user.id}) }}">Modifier mon profil</a>
+								<a class="dropdown-item" href="{{ path('user.edit.password', {id : app.user.id}) }}">Modifier le mot de passe</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ path('security.logout')}}">Déconnexion 🚪</a>
+							</div>
+						</li>
+					{% else %}
+
+						<li class="nav-item">
+							<a class="nav-link active" href="{{ path('security.login') }}">Connexion 🔑
+								<span class="visually-hidden">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="{{ path('security.registration') }}">Inscription 📝
+								<span class="visually-hidden">(current)</span>
+							</a>
+						</li>
+					{% endif %}
+
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</nav>
