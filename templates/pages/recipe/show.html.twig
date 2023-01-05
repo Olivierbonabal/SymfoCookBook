@@ -13,13 +13,17 @@
 			</div>
 		{% endfor %}
 
-		<h1 class="mt-3">{{ recipe.name }}</h1>
-
-			<div class="recipe_image ">
-				<img style="max-width: 500px;" src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
+		<div class="card my-3">
+			<h3 class="card-header">{{ recipe.name }}</h3>
+			<div class="card-body">
+				{# <h1 class="mt-3">{{ recipe.name }}</h1> #}
+				{# <div class="recipe_image "> #}
+			<img
+				style="max-width: 400px;" src="{{ vich_uploader_asset(recipe, 'imageFile') }}"> {# </div> #}
 			</div>
-			
+		</div>
 		{# {{ dump(recipe.average) }} #}
+
 		<p>⭐ La moyenne de cette Recette est de
 			{{ recipe.average|number_format(2, '.', ',') }}/5</p>
 

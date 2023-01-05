@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Créer ta Recette
+{% block title %}Nouvelle Recette
 {% endblock %}
 
 {% block body %}
@@ -11,9 +11,9 @@
 			Création d'une recette
 		</h1>
 
-{{ form_start(form) }}
+		{{ form_start(form) }}
 
-	<div class="form-error">
+		<div class="form-error">
 			{{ form_errors(form) }}
 		</div>
 
@@ -75,22 +75,18 @@
 
 		{{ form_row(form.imageFile) }}
 
-			{# {{ form_row(form.ingredients) }} #}
 		{{form_label(form.ingredients)}}
 		<br>
 		<div id="ingredients-wrapper">
-		{% for field in form.ingredients %}
-			<div style="min-width: 10%;">
-			{{ form_widget(field) }}
-			{{ form_label(field) }}
-			</div>
-		{% endfor %}
-			</div>
+			{% for field in form.ingredients %}
+				<div style="min-width: 10%;">
+					{{ form_widget(field) }}
+					{{ form_label(field) }}
+				</div>
+			{% endfor %}
+		</div>
 
-{{ form_end(form) }}
-			</div>
+		{{ form_end(form) }}
+	</div>
 
 {% endblock %}
-
-
- 

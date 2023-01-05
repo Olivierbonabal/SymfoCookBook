@@ -15,6 +15,12 @@
 					</a>
 				</li>
 
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('recipe.community') }}">Recettes en partage
+						<span class="visually-hidden">(current)</span>
+					</a>
+				</li>
+
 				{% if app.user %}
 					<li class="nav-item">
 						<a class="nav-link active" href="{{ path('ingredient.index') }}">Mes Ingrédients
