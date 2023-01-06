@@ -27,6 +27,9 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $users = [];
+
+        $admin = new User();
+        
         for ($u = 0; $u < 10; $u++) {
             $user = new User();
             $user->setFullName($this->faker->name())
