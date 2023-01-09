@@ -29,7 +29,14 @@ class AppFixtures extends Fixture
         $users = [];
 
         $admin = new User();
-        
+        $admin->setFullName('Administrateur')
+              ->setPseudo(\null)
+              ->setEmail('admin@cookbook.com')
+              ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
+              ->setPlainPassword('admin');
+        $users[] = $admin;
+        $manager->persist($admin);
+
         for ($u = 0; $u < 10; $u++) {
             $user = new User();
             $user->setFullName($this->faker->name())
