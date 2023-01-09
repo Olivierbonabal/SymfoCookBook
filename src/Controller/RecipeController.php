@@ -9,13 +9,15 @@ use App\Form\RecipeType;
 use App\Repository\MarkRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RecipeController extends AbstractController
 {
@@ -43,8 +45,15 @@ class RecipeController extends AbstractController
         RecipeRepository $repository,
         Request $request
     ): Response {
+        //CAChe*/
+        $cache = new FilesystemAdapter();
+        $data =  $cache->get('recipes', function (ItemInterface $item) use ($repository) {
+            $item->expiresAfter(20);
+            return $repository->findPublicRecipe(null);
+        });
+
         $recipes = $paginator->paginate(
-            $repository->findPublicRecipe(null),
+            $data,
             $request->query->getInt('page', 1),
             10
         );
